@@ -10,19 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author jrthi
- */
-public class loginSenha extends JFrame {
+
+public class cadastroLogin extends JFrame {
     
- //1° passo
+   //1° passo
     public JLabel lblLogin, lblSenha;
     public JTextField txtLogin, txtSenha;
-    public JButton btnCadastro;
-    public JButton btnEntrar;
+    public JButton btnCadastrar;
+    public JButton btnVoltar;
     
-    public loginSenha() throws ParseException{
+    public cadastroLogin() throws ParseException{
     
               setLayout(null);
 
@@ -35,17 +32,17 @@ public class loginSenha extends JFrame {
                 
      
         
-        btnCadastro = new JButton("Cadastrar");
+        btnCadastrar = new JButton("Cadastrar Login");
         
-        btnEntrar = new JButton("Voltar");
+        btnVoltar = new JButton("Entrar");
         
         
         lblLogin.setBounds(10, 40, 200, 25);
         txtLogin.setBounds(80, 40, 250, 25);
         lblSenha.setBounds(10, 80, 200, 25);
         txtSenha.setBounds(80, 80, 250, 25);
-        btnCadastro.setBounds(30,160, 150, 40);
-        btnEntrar.setBounds(210,160, 150, 40);
+        btnCadastrar.setBounds(30,160, 150, 40);
+        btnVoltar.setBounds(210,160, 150, 40);
        
 
       
@@ -53,12 +50,12 @@ public class loginSenha extends JFrame {
         getContentPane().add(txtLogin);
         getContentPane().add(lblSenha);
         getContentPane().add(txtSenha);
-        getContentPane().add(btnCadastro);
-        getContentPane().add(btnEntrar);
+        getContentPane().add(btnCadastrar);
+        getContentPane().add(btnVoltar);
         
       
         setSize(400, 400);
-        setTitle("Login");
+        setTitle("Cadastro Login");
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,9 +63,4 @@ public class loginSenha extends JFrame {
         
     }
     
-    
-   
-    
-}   
-
-
+}

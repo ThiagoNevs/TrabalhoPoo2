@@ -4,6 +4,7 @@
  */
 package Main;
 
+import creche.cadastroLogin;
 import creche.loginSenha;
 import creche.menu;
 import creche.parentes;
@@ -20,6 +21,8 @@ public class Main {
         loginSenha loginSenha = new loginSenha ();
         
         menu menu = new menu();
+        
+        cadastroLogin cadastroLogin = new cadastroLogin();
         
   
         

@@ -36,7 +36,7 @@ public class menu extends JFrame{
         getContentPane().add(btnEntrar);
         
       
-        setSize(500, 300);
+        setSize(500, 200);
         setTitle("Menu");
         setLocationRelativeTo(null);
         setVisible(true);
