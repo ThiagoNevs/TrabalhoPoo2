@@ -16,13 +16,13 @@ import java.text.ParseException;
  */
 public class Main {
     public static void main(String[] args) throws ParseException{
-        parentes cadastro = new parentes();
+        //parentes cadastro = new parentes();
         
         loginSenha loginSenha = new loginSenha ();
         
         menu menu = new menu();
         
-        cadastroLogin cadastroLogin = new cadastroLogin();
+        //cadastroLogin cadastroLogin = new cadastroLogin();
         
   
         

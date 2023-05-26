@@ -35,6 +35,7 @@ public class parentes extends JFrame {
         public JComboBox jdesconto;
         public JButton btnEnviar;
         public JButton buttonProx;
+        public JButton btnMenu;
     
        private String[] scmensalidade = {"1000.50", "950.50", "800.20", "600.25", "400.99","275.50"};
        private String[] sjdesconto = {"0", "25", "50", "75", "100"};
@@ -54,14 +55,50 @@ public class parentes extends JFrame {
        
        lblmensalidade = new JLabel("Valor mensalidade:");
        cmensalidade = new JComboBox(scmensalidade);
-       lbldesconto = new JLabel("Valor em desconto");
+       lbldesconto = new JLabel("Valor em desconto:");
        jdesconto = new JComboBox(sjdesconto);
        btnEnviar = new JButton("Enviar");
        buttonProx = new JButton("Prox. Pág.");
+       btnMenu = new JButton("Menu");
+      
        
        
+       lblNome.setBounds(10, 10, 200, 25);
+       txtNome.setBounds(70, 10, 250, 25);
+       lblCpf.setBounds(10, 60, 200, 25);
+       ftxtCpf.setBounds(70, 60, 250, 25);
+       lblgrau.setBounds(10, 110, 200, 25);
+       txtgrau.setBounds(135, 110, 185, 25);
+       lbldesconto.setBounds(10,160, 200, 25);
+       jdesconto.setBounds(120, 190, 200, 25);
+       lblmensalidade.setBounds(10, 230, 200 , 25);
+       cmensalidade.setBounds(120, 260, 200, 25);
+       btnEnviar.setBounds(155, 300, 100, 40);
+       buttonProx.setBounds(30, 300, 115, 40);
+       btnMenu.setBounds(270, 300, 100, 40);
        
+       getContentPane().add(lblNome);
+       getContentPane().add(txtNome);
+       getContentPane().add(lblCpf);
+       getContentPane().add(ftxtCpf);
+       getContentPane().add(lblgrau);
+       getContentPane().add(txtgrau);
+       getContentPane().add(lbldesconto);
+       getContentPane().add(jdesconto);
+       getContentPane().add(lblmensalidade);
+       getContentPane().add(cmensalidade);
+       getContentPane().add(btnEnviar);
+       getContentPane().add(buttonProx);
+       getContentPane().add(btnMenu);
+
        
+       setSize(400, 400);
+       setTitle("Cadastro Responsável");
+       setLocationRelativeTo(null);
+       setVisible(true);
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+        
        btnEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,39 +117,16 @@ public class parentes extends JFrame {
             }
         });
        
-       
-       lblNome.setBounds(10, 10, 200, 25);
-       txtNome.setBounds(70, 10, 250, 25);
-       lblCpf.setBounds(10, 60, 200, 25);
-       ftxtCpf.setBounds(70, 60, 250, 25);
-       lblgrau.setBounds(10, 110, 200, 25);
-       txtgrau.setBounds(135, 110, 185, 25);
-       lbldesconto.setBounds(10,160, 200, 25);
-       jdesconto.setBounds(120, 190, 200, 25);
-       lblmensalidade.setBounds(10, 230, 200 , 25);
-       cmensalidade.setBounds(120, 260, 200, 25);
-       buttonProx.setBounds(60, 300, 115, 40);
-       btnEnviar.setBounds(190, 300, 100, 40);
-       
-       getContentPane().add(lblNome);
-       getContentPane().add(txtNome);
-       getContentPane().add(lblCpf);
-       getContentPane().add(ftxtCpf);
-       getContentPane().add(lblgrau);
-       getContentPane().add(txtgrau);
-       getContentPane().add(lbldesconto);
-       getContentPane().add(jdesconto);
-       getContentPane().add(lblmensalidade);
-       getContentPane().add(cmensalidade);
-       getContentPane().add(btnEnviar);
-       getContentPane().add(buttonProx);
-
-       
-       setSize(400, 400);
-       setTitle("Cadastro Responsável");
-       setLocationRelativeTo(null);
-       setVisible(true);
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       btnMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    cliqueMenu();
+                } catch (ParseException ex) {
+                    Logger.getLogger(parentes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
       
@@ -158,5 +172,10 @@ public class parentes extends JFrame {
       crianca crianca = new crianca();
    
     }
-
+    
+   private void cliqueMenu()  throws ParseException{
+       
+       this.dispose();
+        menu menu = new menu();
+    }
 }

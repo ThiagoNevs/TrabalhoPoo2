@@ -36,7 +36,7 @@ public class cadastroLogin extends JFrame {
                 
      
         
-        btnCadastrar = new JButton("Cadastrar Login");
+        btnCadastrar = new JButton("Criar Login");
         
         btnVoltar = new JButton("Voltar");
         
@@ -58,8 +58,8 @@ public class cadastroLogin extends JFrame {
         getContentPane().add(btnVoltar);
         
       
-        setSize(400, 400);
-        setTitle("Cadastro Login");
+        setSize(400, 300);
+        setTitle("Cadastrar Login");
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

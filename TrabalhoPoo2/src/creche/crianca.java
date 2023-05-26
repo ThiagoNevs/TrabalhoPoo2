@@ -35,6 +35,7 @@ public class crianca extends JFrame {
         public JComboBox jserie;
         public JButton btnEnviar2;
         public JButton buttonAnt;
+        public JButton btnMenu;
     
        private final String[] scaltura = {"1.51", "1.45", "1.42", "1.39", "1.33","1.20"};
        private final String[] sjserie = {"1","2", "3" ,"4" , "5"};
@@ -49,20 +50,56 @@ public class crianca extends JFrame {
        lblCpf = new JLabel("CPF:");
        ftxtCpf = new JFormattedTextField(
                 new MaskFormatter("###.###.###-##"));
-       lbltipoSangue = new JLabel("tipo Sangue:");
+       lbltipoSangue = new JLabel("Tipo Sangue:");
        txttipoSangue = new JTextField();
        
-       lblaltura = new JLabel("altura:");
+       lblaltura = new JLabel("Altura:");
        caltura = new JComboBox(scaltura);
-       lblserie = new JLabel("série");
+       lblserie = new JLabel("Série:");
        jserie = new JComboBox(sjserie);
        btnEnviar2 = new JButton("Enviar");
        buttonAnt = new JButton("Prox. Pág.");
+       btnMenu = new JButton("Menu");
+       
+    
+       lblNome.setBounds(10, 10, 200, 25);
+       txtNome.setBounds(70, 10, 250, 25);
+       lblCpf.setBounds(10, 60, 200, 25);
+       ftxtCpf.setBounds(70, 60, 250, 25);
+       lbltipoSangue.setBounds(10, 110, 200, 25);
+       txttipoSangue.setBounds(90, 110, 230, 25);
+       lblserie.setBounds(10,160, 200, 25);
+       jserie.setBounds(90, 160, 200, 25);
+       lblaltura.setBounds(10, 230, 200 , 25);
+       caltura.setBounds(90, 230, 200, 25);
+       buttonAnt.setBounds(30, 300, 115, 40);
+       btnEnviar2.setBounds(155, 300, 100, 40);
+       btnMenu.setBounds(270, 300, 100, 40);
        
        
+       getContentPane().add(lblNome);
+       getContentPane().add(txtNome);
+       getContentPane().add(lblCpf);
+       getContentPane().add(ftxtCpf);
+       getContentPane().add(lbltipoSangue);
+       getContentPane().add(txttipoSangue);
+       getContentPane().add(lblserie);
+       getContentPane().add(jserie);
+       getContentPane().add(lblaltura);
+       getContentPane().add(caltura);
+       getContentPane().add(btnEnviar2);
+       getContentPane().add(buttonAnt);
+       getContentPane().add(btnMenu);
+
+       
+       setSize(400, 400);
+       setTitle("Cadastro Criança");
+       setLocationRelativeTo(null);
+       setVisible(true);
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
        
-       btnEnviar2.addActionListener((ActionEvent e) -> {
+           btnEnviar2.addActionListener((ActionEvent e) -> {
            cliqueBtnEnviar();
        });
        
@@ -77,39 +114,17 @@ public class crianca extends JFrame {
             }
         });
        
+        btnMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    cliqueMenu();
+                } catch (ParseException ex) {
+                    Logger.getLogger(crianca.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
        
-       lblNome.setBounds(10, 10, 200, 25);
-       txtNome.setBounds(70, 10, 250, 25);
-       lblCpf.setBounds(10, 60, 200, 25);
-       ftxtCpf.setBounds(70, 60, 250, 25);
-       lbltipoSangue.setBounds(10, 110, 200, 25);
-       txttipoSangue.setBounds(90, 110, 230, 25);
-       lblserie.setBounds(10,160, 200, 25);
-       jserie.setBounds(120, 190, 200, 25);
-       lblaltura.setBounds(10, 230, 200 , 25);
-       caltura.setBounds(120, 260, 200, 25);
-       buttonAnt.setBounds(60, 300, 115, 40);
-       btnEnviar2.setBounds(190, 300, 100, 40);
-       
-       getContentPane().add(lblNome);
-       getContentPane().add(txtNome);
-       getContentPane().add(lblCpf);
-       getContentPane().add(ftxtCpf);
-       getContentPane().add(lbltipoSangue);
-       getContentPane().add(txttipoSangue);
-       getContentPane().add(lblserie);
-       getContentPane().add(jserie);
-       getContentPane().add(lblaltura);
-       getContentPane().add(caltura);
-       getContentPane().add(btnEnviar2);
-       getContentPane().add(buttonAnt);
-
-       
-       setSize(400, 400);
-       setTitle("Cadastro Criança");
-       setLocationRelativeTo(null);
-       setVisible(true);
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
       
@@ -154,5 +169,10 @@ public class crianca extends JFrame {
        this.dispose();
        parentes parentes = new parentes();
     }
-
+    
+   private void cliqueMenu()  throws ParseException{
+       
+       this.dispose();
+        menu menu = new menu();
+    }
 }

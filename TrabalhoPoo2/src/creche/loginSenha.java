@@ -61,7 +61,7 @@ public class loginSenha extends JFrame {
         getContentPane().add(btnEntrar);
         
       
-        setSize(400, 400);
+        setSize(400, 300);
         setTitle("Login");
         setLocationRelativeTo(null);
         setVisible(true);
