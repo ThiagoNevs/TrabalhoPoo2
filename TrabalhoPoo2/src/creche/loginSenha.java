@@ -4,7 +4,11 @@
  */
 package creche;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,7 +41,7 @@ public class loginSenha extends JFrame {
         
         btnCadastro = new JButton("Cadastrar");
         
-        btnEntrar = new JButton("Voltar");
+        btnEntrar = new JButton("Entrar");
         
         
         lblLogin.setBounds(10, 40, 200, 25);
@@ -64,11 +68,26 @@ public class loginSenha extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
+        btnCadastro.addActionListener(new ActionListener(){
+                  @Override
+                  public void actionPerformed(ActionEvent e) {
+                      try { cliqueCadastrar();
+                      } catch (ParseException ex) {
+                          Logger.getLogger(loginSenha.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                  }
+            
+        });
+        
+        
     }
     
-    
+     private void cliqueCadastrar()  throws ParseException{
+       
+       this.dispose();
+       
+       cadastroLogin cadastroLogin = new cadastroLogin();
+     }
    
-    
-}   
-
+}
 

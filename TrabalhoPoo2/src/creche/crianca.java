@@ -149,7 +149,7 @@ public class crianca extends JFrame {
         }
     }
       
-   private void cliqueProxPage() throws ParseException{
+   private void cliqueProxPage()  throws ParseException{
        
        this.dispose();
        parentes parentes = new parentes();

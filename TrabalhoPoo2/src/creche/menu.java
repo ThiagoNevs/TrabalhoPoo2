@@ -4,38 +4,37 @@
  */
 package creche;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+
 public class menu extends JFrame{
     
-    public JButton btnCadastro;
-    public JButton btnEntrar;
+    public JButton btnCadastroResp;
+    public JButton btnEntrarCrian;
     
     public menu() throws ParseException{
     
               setLayout(null);
-
-
-     
+              
+              
+        btnCadastroResp = new JButton("Cadastrar Responsável");
         
-        btnCadastro = new JButton("Cadastrar Responsável");
-        
-        btnEntrar = new JButton("Cadastrar Criança");
+        btnEntrarCrian = new JButton("Cadastrar Criança");
         
         
-       
-        btnCadastro.setBounds(20,50, 200, 40);
-        btnEntrar.setBounds(270,50, 200, 40);
-       
-
-      
-       
-        getContentPane().add(btnCadastro);
-        getContentPane().add(btnEntrar);
+        btnCadastroResp.setBounds(20,50, 200, 40);
+        btnEntrarCrian.setBounds(270,50, 200, 40);
+           
+        getContentPane().add(btnCadastroResp);
+        getContentPane().add(btnEntrarCrian);
         
-      
+        
         setSize(500, 200);
         setTitle("Menu");
         setLocationRelativeTo(null);
@@ -43,7 +42,44 @@ public class menu extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
+      btnCadastroResp.addActionListener(new ActionListener () {
+                  @Override
+                  public void actionPerformed(ActionEvent e) {
+                      try {
+                          cliqueCadastroResp();
+                      } catch (ParseException ex) {
+                          Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                  }
+          
+      });
+      
+       btnEntrarCrian.addActionListener(new ActionListener () {
+                  @Override
+                  public void actionPerformed(ActionEvent e) {
+                      try {
+                          cliqueCadastroCrian();
+                      } catch (ParseException ex) {
+                          Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                  }
+          
+      });
+        
+        
     }    
     
+      private void cliqueCadastroResp()  throws ParseException{
+       
+       this.dispose();
+       parentes parentes = new parentes();
+    }
+      
+       private void cliqueCadastroCrian()  throws ParseException{
+       
+       this.dispose();
+       crianca crianca = new crianca();
+    }
+      
     
 }
