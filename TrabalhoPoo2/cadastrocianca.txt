@@ -1,5 +1,5 @@
 nome : 
 cpf :    .   .   -  
-Tipo Sangue : O+
+Tipo Sangue : 
 altura : 1.51
 serie : 1

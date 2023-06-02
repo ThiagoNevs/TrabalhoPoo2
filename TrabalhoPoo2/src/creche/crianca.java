@@ -5,7 +5,6 @@
 
 package creche;
 
-import DBConnection.BDConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -157,11 +156,7 @@ public class crianca extends JFrame {
         }catch(FileNotFoundException e){
             System.out.println("Arquivo nÃo existe");
         }
-        try {
-             BDConnection.cadastroCrianca(nome, cpf, sangue, altura, serie);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        
     }
       
    private void cliqueProxPage()  throws ParseException{

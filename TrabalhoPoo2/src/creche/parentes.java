@@ -5,7 +5,6 @@
 
 package creche;
 
-import DBConnection.BDConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -159,11 +158,7 @@ public class parentes extends JFrame {
         }catch(FileNotFoundException e){
             System.out.println("Arquivo nÃo existe");
         }
-        try {
-             BDConnection.cadastroParentes(nome, cpf, parentesco, mensalidade, desconto);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        
     }
       
    private void cliqueProxPage() throws ParseException{
