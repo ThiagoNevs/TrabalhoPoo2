@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package creche;
+package View.Gui.Login;
 
+import View.Gui.Verificacao.Verificacao;
+import creche.menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -12,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -30,8 +33,6 @@ public class loginSenha extends JFrame {
     
               setLayout(null);
 
-        //---------------------------------------------Parente 1 ----------------------------------------------------------
-        // 2° passo
         lblLogin = new JLabel("Login:");
         txtLogin = new JTextField();
         lblSenha = new JLabel("Senha:");
@@ -68,26 +69,58 @@ public class loginSenha extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
-        btnCadastro.addActionListener(new ActionListener(){
-                  @Override
-                  public void actionPerformed(ActionEvent e) {
-                      try { cliqueCadastrar();
-                      } catch (ParseException ex) {
-                          Logger.getLogger(loginSenha.class.getName()).log(Level.SEVERE, null, ex);
-                      }
-                  }
-            
+        btnEntrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Logar();
+
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro ao executar a ação :" + ex);
+                }
+            }
         });
         
-        
+        btnCadastro.addActionListener((ActionEvent e) -> {
+            try {
+                this.dispose();
+                CadastrarLogin();
+
+            } catch (ParseException ex) {
+                System.out.println("Ocorreu um erro ao carregar a tela de cadastro :" + ex);
+            }
+        });
+
+      
+    }
+
+    
+    private  synchronized void Logar() throws ParseException {
+        String nome = txtLogin.getText();
+        String senha = txtSenha.getText();
+
+        Verificacao verificacao = new Verificacao(nome, senha);
+
+       
+        if (verificacao.Acessa(nome, senha) == true) {
+            this.dispose();
+            menu menu = new menu();
+
+        }
+
     }
     
-     private void cliqueCadastrar()  throws ParseException{
-       
-       this.dispose();
-       
-       cadastroLogin cadastroLogin = new cadastroLogin();
-     }
-   
-}
+    private void CadastrarLogin() throws ParseException {
+        cadastroLogin cadastrologin = new cadastroLogin();
+        
+    }
 
+
+    public void run() {
+        try {
+            this.Logar();
+        } catch (ParseException ex) {
+            Logger.getLogger(loginSenha.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

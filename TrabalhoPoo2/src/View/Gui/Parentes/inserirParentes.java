@@ -3,16 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package creche;
+package View.Gui.Parentes;
 
+import SingletonConnection.Parentes;
+import View.Gui.Crianca.inserirCrianca;
+import View.Gui.TelaPadrao.TelaPadrao;
+import creche.menu;
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -25,22 +25,22 @@ import javax.swing.text.MaskFormatter;
  *
  * @author midia
  */
-public class parentes extends JFrame {
-        public JLabel lblNome, lblCpf, lblgrau,lblmensalidade,lbldesconto;
-        public JTextField txtNome;
-        public JFormattedTextField ftxtCpf;    
-        public JTextField txtgrau;
-        public JComboBox cmensalidade;
-        public JComboBox jdesconto;
-        public JButton btnEnviar;
-        public JButton buttonProx;
-        public JButton btnMenu;
+public class inserirParentes extends TelaPadrao {
+        private final JLabel lblNome, lblCpf, lblgrau,lblmensalidade,lbldesconto;
+        private final JTextField txtNome;
+        private final JFormattedTextField ftxtCpf;    
+        private final JTextField txtgrau;
+        private final JComboBox cmensalidade;
+        private final JComboBox jdesconto;
+        private final JButton btnEnviar;
+        private final JButton btnProx;
+        private final JButton btnMenu;
     
        private String[] scmensalidade = {"1000.50", "950.50", "800.20", "600.25", "400.99","275.50"};
        private String[] sjdesconto = {"0", "25", "50", "75", "100"};
 
    
-               public parentes() throws ParseException{
+               public inserirParentes() throws ParseException{
    
        setLayout(null);
        
@@ -57,7 +57,7 @@ public class parentes extends JFrame {
        lbldesconto = new JLabel("Valor em desconto:");
        jdesconto = new JComboBox(sjdesconto);
        btnEnviar = new JButton("Enviar");
-       buttonProx = new JButton("Prox. Pág.");
+       btnProx = new JButton("Prox. Pág.");
        btnMenu = new JButton("Menu");
       
        
@@ -73,7 +73,7 @@ public class parentes extends JFrame {
        lblmensalidade.setBounds(10, 230, 200 , 25);
        cmensalidade.setBounds(120, 260, 200, 25);
        btnEnviar.setBounds(155, 300, 100, 40);
-       buttonProx.setBounds(30, 300, 115, 40);
+       btnProx.setBounds(30, 300, 115, 40);
        btnMenu.setBounds(270, 300, 100, 40);
        
        getContentPane().add(lblNome);
@@ -87,7 +87,7 @@ public class parentes extends JFrame {
        getContentPane().add(lblmensalidade);
        getContentPane().add(cmensalidade);
        getContentPane().add(btnEnviar);
-       getContentPane().add(buttonProx);
+       getContentPane().add(btnProx);
        getContentPane().add(btnMenu);
 
        
@@ -98,79 +98,65 @@ public class parentes extends JFrame {
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        
         
-       btnEnviar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cliqueBtnEnviar();
-            }
-        });
-       
-       buttonProx.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    cliqueProxPage();
-                } catch (ParseException ex) {
-                    Logger.getLogger(parentes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-       
-       btnMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    cliqueMenu();
-                } catch (ParseException ex) {
-                    Logger.getLogger(parentes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
-      
-      private void cliqueBtnEnviar(){
+         btnEnviar.addActionListener((ActionEvent e) -> {
+            try{
+                cadastrarParentes();
+            }catch(ParseException ex){
+                System.out.println("Ocorreu um erro ao cadastrar no banco de dados :" + e);
+            }
+        });
+        
+         btnMenu.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    btnMenu();
+                } catch (ParseException ex) {
+                    System.out.println("Ocorreu um erro ao mudar de tela :" + e);
+                }
+            }
+        });
+         
+        btnProx.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    trocaTela();
+                } catch (ParseException ex) {
+                    System.out.println("Ocorreu um erro ao mudar de tela :" + e);
+                }
+            }
+        });
+
+    }
+    
+    private void trocaTela() throws ParseException{
+        this.dispose();
+        inserirCrianca inserirCrianca = new inserirCrianca();
+    }
+    private void btnMenu() throws ParseException{
+        this.dispose();
+        menu menu = new menu();
+    }
+    
+    
+    
+    private void cadastrarParentes()throws ParseException{
         String nome = txtNome.getText(),
-               cpf =ftxtCpf.getText();
+        cpf =ftxtCpf.getText();
         String parentesco = txtgrau.getText();
         int desconto =Integer.parseInt((String) jdesconto.getSelectedItem());
         float mensalidade = Float.parseFloat((String) cmensalidade.getSelectedItem());
-        
-     
-               
-        
-        System.out.println("nome completo: " + nome);
-        System.out.println("cpf : " + cpf);
-        System.out.println("grau de parentesco : " + parentesco);
-        System.out.println("mensalidade: " + mensalidade);
-        System.out.println("desconto: " + desconto);
-
-
-
-        try(PrintWriter pw = new PrintWriter(new File("cadastroParentes.txt"))){
-            pw.println("nome : " + nome);
-            pw.println("cpf : " + cpf);
-            pw.println("parentesco : " + parentesco);
-            pw.println("mensalidade : " + mensalidade);
-            pw.println("desconto : " + desconto);
-          
-
-        }catch(FileNotFoundException e){
-            System.out.println("Arquivo nÃo existe");
+        try {
+            Parentes parentes = new Parentes(nome, cpf, parentesco, mensalidade, desconto);
+            parentes.inserir();
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao executar o evento :" + e);
         }
         
-    }
-      
-   private void cliqueProxPage() throws ParseException{
-       
-       this.dispose();
-      crianca crianca = new crianca();
-   
+        
     }
     
-   private void cliqueMenu()  throws ParseException{
-       
-       this.dispose();
-        menu menu = new menu();
-    }
 }
+

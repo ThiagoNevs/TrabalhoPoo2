@@ -1,10 +1,17 @@
-package DBConnection;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package SingletonConnection;
 
+/**
+ *
+ * @author jrthi
+ */
 import BDObject.BDObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,26 +20,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Crianca extends BDObject {
+public class Parentes extends BDObject {
 
     SingletonConnection inst = SingletonConnection.getInstance();
     Connection con = inst.getConexao();
 
     private String nome;
     private String cpf;
-    private String sangue;
-    private float altura;
-    private int serie;
+    private String parentesco;
+    private float mensalidade;
+    private int desconto;
 
-    public Crianca(String nomeCrianca, String cpfCrianca ,String sangueCrianca, float alturaCrianca, int serieCrianca) {
-        nome = nomeCrianca;
-        cpf = cpfCrianca;
-        sangue = sangueCrianca;
-        altura = alturaCrianca;
-        serie = serieCrianca;
+    public Parentes(String nome_parentes, String cpf_parentes ,String parentesco_parentes, float mensalidade_parentes, int desconto_parentes) {
+        nome = nome_parentes;
+        cpf = cpf_parentes;
+        parentesco = parentesco_parentes;
+        mensalidade = mensalidade_parentes;
+        desconto = desconto_parentes;
     }
 
-    public Crianca() {
+    public Parentes() {
     }
 
     @Override
@@ -44,9 +51,9 @@ public class Crianca extends BDObject {
 
             pst.setString(1, nome);
             pst.setString(2, cpf);
-            pst.setString(3, sangue);
-            pst.setFloat(4, altura);
-            pst.setInt(5, serie);
+            pst.setString(3, parentesco);
+            pst.setFloat(4, mensalidade);
+            pst.setInt(5, desconto);
 
             pst.executeUpdate();
 
@@ -62,14 +69,14 @@ public class Crianca extends BDObject {
     public void atualizar() {
         try {
 
-            String query = "UPDATE crianca SET nome_crianca = ?, sangue_crianca = ?, altura_crianca= ?, serie_crianca = ? WHERE cpf_crianca= ?" ;
+            String query = "UPDATE parentes SET nome_parentes = ?, parentesco_parentes = ?, mensalidade_parentes= ?, desconto_parentes = ? WHERE cpf_parentes= ?" ;
             PreparedStatement pst = con.prepareStatement(query);
             
             pst.setString(1, nome);
             pst.setString(2, cpf);
-            pst.setString(3, sangue);
-            pst.setFloat(4, altura);
-            pst.setInt(5, serie);
+            pst.setString(3, parentesco);
+            pst.setFloat(4, mensalidade);
+            pst.setInt(5, desconto);
             
             int resultado = pst.executeUpdate();
 
@@ -86,7 +93,7 @@ public class Crianca extends BDObject {
 
     public void deletar(String nome) {
         try {
-            String query = "DELETE FROM crianca WHERE nome_crianca = ?";
+            String query = "DELETE FROM crianca WHERE nome_parentes = ?";
             PreparedStatement pst = con.prepareStatement(query);
 
             pst.setString(1, nome);
@@ -108,16 +115,16 @@ public class Crianca extends BDObject {
         
         JFrame tela = new JFrame();
          
-        tela.setTitle("Crianças cadastradas");
+        tela.setTitle("Parentes cadastradas");
         tela.setSize(500, 300);
         tela.setResizable(false);
         
 // Cria a tabela
-         String[] colunas = {"Nome", "CPF","Sangue","Altura","Série"};
+         String[] colunas = {"Nome", "CPf","Parentesco","Mensalidade","Desconto"};
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
         JTable tabela = new JTable(modelo);
         try {
-            String query = "SELECT * FROM crianca";
+            String query = "SELECT * FROM parentes";
 
             PreparedStatement pst = con.prepareStatement(query);
 
@@ -126,15 +133,15 @@ public class Crianca extends BDObject {
             System.out.println("Resultado da pesquisa");
 
             while (rst.next()) {
-                String nome = rst.getString("nome_crianca");
-                String cpf = rst.getString("cpf_crianca");
-                String sangue = rst.getString("sangue_crianca");
-                String altura = rst.getString("altura_crianca");
-                String serie = rst.getString("serie_crianca");
-                modelo.addRow(new Object[] { nome,cpf,sangue,altura,serie});
+                String nome = rst.getString("nome_parentes");
+                String cpf = rst.getString("cpf_parentes");
+                String parentesco = rst.getString("parentesco_parentes");
+                String mensalidade = rst.getString("mensalidade_parentes");
+                String desconto = rst.getString("desconto_parentes");
+                modelo.addRow(new Object[] { nome,cpf,parentesco,mensalidade,desconto});
             }
         } catch (SQLException ex) {
-            System.out.println("Ocorreu um erro ao exibir os cadastros das crianças:" + ex);
+            System.out.println("Ocorreu um erro ao exibir os cadastros dos parentes:" + ex);
         }
         tela.add(new JScrollPane(tabela));
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -143,4 +150,3 @@ public class Crianca extends BDObject {
     }
 
 }
-

@@ -4,10 +4,8 @@
  */
 package Main;
 
-import creche.cadastroLogin;
-import creche.loginSenha;
-import creche.menu;
-import creche.parentes;
+import SingletonConnection.Arquivo;
+import View.Gui.Login.loginSenha;
 import java.text.ParseException;
 
 /**
@@ -16,16 +14,11 @@ import java.text.ParseException;
  */
 public class Main {
     public static void main(String[] args) throws ParseException{
-        //parentes cadastro = new parentes();
         
-        loginSenha loginSenha = new loginSenha ();
+        Arquivo arquivo = new Arquivo();
+        Thread thread = new Thread(arquivo);
+        thread.start();
         
-        menu menu = new menu();
-        
-        //cadastroLogin cadastroLogin = new cadastroLogin();
-        
-  
-        
-
-}
+      loginSenha loginsenha = new loginSenha();
+    }
 }

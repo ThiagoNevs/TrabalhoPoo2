@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package creche;
+package View.Gui.Login;
 
+import SingletonConnection.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -64,22 +65,45 @@ public class cadastroLogin extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        btnVoltar.addActionListener(new ActionListener(){
-                  @Override
-                  public void actionPerformed(ActionEvent e) {
-                      try {cliqueVoltarLogin();}
-                      catch (ParseException ex) {
-                          Logger.getLogger(cadastroLogin.class.getName()).log(Level.SEVERE, null, ex);
-                      }
-                  }
- });
+        btnCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CadastraLogin();
+                  try {
+                    Voltar();
+                } catch (ParseException ex) {
+                    Logger.getLogger(cadastroLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+            }
+        });
+        
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Voltar();
+                } catch (ParseException ex) {
+                    Logger.getLogger(cadastroLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+    }
+    private synchronized void CadastraLogin(){
+    String nomeLogin  = txtLogin.getText();
+    String senhaLogin = txtSenha.getText();
+    
+    
+        try {
+            Login login = new Login(nomeLogin, senhaLogin);
+            login.inserir();
+        } catch (Exception e) {
+        }
     }
     
-    private void cliqueVoltarLogin() throws ParseException{
-       
-       this.dispose();
-       
-        loginSenha loginSenha = new loginSenha ();
+    private void Voltar() throws ParseException{
+        this.dispose();
+        loginSenha loginsenha = new loginSenha();
     }
-
 }
