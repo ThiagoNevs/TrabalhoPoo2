@@ -6,7 +6,7 @@ package View.Gui.Crianca;
 
 import SingletonConnection.Crianca;
 import View.Gui.TelaPadrao.TelaPadrao;
-import creche.menu;
+import View.Gui.Menu.menu;
 import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

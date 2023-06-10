@@ -5,7 +5,7 @@
 package View.Gui.Parentes;
 
 import SingletonConnection.Parentes;
-import creche.menu;
+import View.Gui.Menu.menu;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;

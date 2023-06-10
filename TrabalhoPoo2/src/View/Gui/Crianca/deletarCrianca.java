@@ -5,7 +5,7 @@
 package View.Gui.Crianca;
 
 import SingletonConnection.Crianca;
-import creche.menu;
+import View.Gui.Menu.menu;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;

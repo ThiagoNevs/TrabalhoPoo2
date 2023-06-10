@@ -5,7 +5,7 @@
 package View.Gui.Login;
 
 import View.Gui.Verificacao.Verificacao;
-import creche.menu;
+import View.Gui.Menu.menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
