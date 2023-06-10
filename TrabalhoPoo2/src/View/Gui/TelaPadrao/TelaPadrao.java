@@ -4,9 +4,10 @@ import java.awt.HeadlessException;
 import javax.swing.JFrame;
 
 
+
 /**
  *
- * @author L.A.A
+ * @author jrthi
  */
 public class TelaPadrao extends JFrame {
 

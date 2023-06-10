@@ -2,6 +2,10 @@
 package BDObject;
 
 
+/**
+ *
+ * @author jrthi
+ */
 public abstract class BDObject {
 
     

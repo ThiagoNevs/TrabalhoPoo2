@@ -12,6 +12,10 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/**
+ *
+ * @author jrthi
+ */
 
 public class menuMostra extends JFrame {
     

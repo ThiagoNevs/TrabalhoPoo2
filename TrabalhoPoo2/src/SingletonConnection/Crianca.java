@@ -13,6 +13,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
+/**
+ *
+ * @author jrthi
+ */
 public class Crianca extends BDObject {
 
     SingletonConnection inst = SingletonConnection.getInstance();

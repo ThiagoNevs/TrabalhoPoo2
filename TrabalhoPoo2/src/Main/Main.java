@@ -10,7 +10,7 @@ import java.text.ParseException;
 
 /**
  *
- * @author midia
+ * @author jrthi
  */
 public class Main {
     public static void main(String[] args) throws ParseException{

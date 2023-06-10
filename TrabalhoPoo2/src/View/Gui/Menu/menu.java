@@ -21,6 +21,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
+/**
+ *
+ * @author jrthi
+ */
 
 public class menu extends JFrame {
 

@@ -17,10 +17,7 @@ import javax.swing.JTextField;
  *
  * @author jrthi
  */
-/**
- *
- * @author jrthi
- */
+
 public class deletarParentes extends JFrame{
 
     private final  JLabel lbl_delete;

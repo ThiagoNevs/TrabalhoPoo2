@@ -9,6 +9,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+/**
+ *
+ * @author jrthi
+ */
+
 public class SingletonConnection {
 
     public static void cadastroCrianca(String nome, String cpf, String sangue, float altura, int serie) {

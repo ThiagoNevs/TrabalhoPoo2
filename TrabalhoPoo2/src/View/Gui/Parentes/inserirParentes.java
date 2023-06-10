@@ -9,7 +9,6 @@ import SingletonConnection.Parentes;
 import View.Gui.Crianca.inserirCrianca;
 import View.Gui.TelaPadrao.TelaPadrao;
 import View.Gui.Menu.menu;
-import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -21,9 +20,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+
 /**
  *
- * @author midia
+ * @author jrthi
  */
 public class inserirParentes extends TelaPadrao {
         private final JLabel lblNome, lblCpf, lblgrau,lblmensalidade,lbldesconto;
