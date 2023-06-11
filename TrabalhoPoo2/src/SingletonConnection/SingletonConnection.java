@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 
 /**
- *
+ * Esta classe representa a conexão com o banco de dados.
  * @author jrthi
  */
 
@@ -19,6 +19,12 @@ public class SingletonConnection {
     public static void cadastroCrianca(String nome, String cpf, String sangue, float altura, int serie) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
+     /**
+     * Construtor privado da classe SingletonConnection.
+     * Realiza a conexão com o banco de dados.
+     */
     
         private java.sql.Connection conexao;
     
@@ -41,6 +47,11 @@ public class SingletonConnection {
         }
     }
 
+     /**
+     * Obtém uma instância única da classe SingletonConnection.
+     * @return A instância única de SingletonConnection.
+     */
+    
     public static synchronized SingletonConnection getInstance() {
 
         if (instance == null) {
@@ -48,7 +59,12 @@ public class SingletonConnection {
         }
         return instance;
     }
-
+    
+ /**
+     * Obtém a conexão com o banco de dados.
+     * @return A conexão com o banco de dados.
+     */
+    
     public synchronized java.sql.Connection getConexao() {
         return this.conexao;
     }

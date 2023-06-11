@@ -16,46 +16,51 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author jrthi
+ * Esta classe representa a inserção de dados a partir de arquivos no banco de dados.
+ * Implementa a interface Runnable para executar a inserção em uma thread separada.
  */
 public class Arquivo implements Runnable {
 
     SingletonConnection inst = SingletonConnection.getInstance();
     Connection con = inst.getConexao();
-    private final String ARQUIVO = "C:\\Users\\jrthi\\OneDrive\\Documentos\\NetBeansProjects\\TrabalhoPoo2\\insere.txt";
-    private final String ARQUIVOBENE = "C:\\Users\\jrthi\\OneDrive\\Documentos\\NetBeansProjects\\TrabalhoPoo2\\insereBENE.txt";
-    private final String ARQUIVOEMP = "C:\\Users\\jrthi\\OneDrive\\Documentos\\NetBeansProjects\\TrabalhoPoo2\\insereEMP.txt";
+    private final String ARQUIVO = "C:\\Users\\jrthi\\OneDrive\\Documentos\\NetBeansProjects\\TrabalhoPoo2\\TrabalhoPoo2\\insere.txt";
+    private final String ARQUIVOCRIANCA = "C:\\Users\\jrthi\\OneDrive\\Documentos\\NetBeansProjects\\TrabalhoPoo2\\TrabalhoPoo2\\insereCrianca.txt";
+    private final String ARQUIVOPARENTES = "C:\\Users\\jrthi\\OneDrive\\Documentos\\NetBeansProjects\\TrabalhoPoo2\\TrabalhoPoo2\\insereParentes.txt";
 
 
 
+      /**
+     * Executa a inserção dos dados dos arquivos no banco de dados em uma thread separada.
+     */
     @Override
     public void run() {
         Thread Monitor = new Thread(() -> {
             try {
                 System.out.println("iniciada");
                 BufferedReader leitor = new BufferedReader(new FileReader(ARQUIVO));
-                BufferedReader leitorBENE = new BufferedReader(new FileReader(ARQUIVOBENE));
-                BufferedReader leitorEMP = new BufferedReader(new FileReader(ARQUIVOEMP));
+                BufferedReader leitorCrianca = new BufferedReader (new FileReader (ARQUIVOCRIANCA));
+                BufferedReader leitorParentes = new BufferedReader(new FileReader(ARQUIVOPARENTES));
 
                 String linha = null;
-                String linhaBENE = null;
-                String linhaEMP = null;
+                String leitorCrianca = null;
+                String leitorParentes = null;
 
                 while (true) {
                     linha = leitor.readLine();
-                    linhaBENE = leitorBENE.readLine();
-                    linhaEMP = leitorEMP.readLine();
+                    leitorCrianca = leitorCrianca.readLine();
+                    leitorParentes = leitorParentes.readLine();
                    
                     if (linha != null) {
-                        inserirNoBanco(linha);
+                        inserirLogin(linha);
                         
                     } 
                     
-                    if (linhaBENE != null){
-                        inserirBancoCrianca(linhaBENE);
+                    if (leitorCrianca != null){
+                        inserirBancoCrianca(leitorCrianca);
 
                     }
-                    if(linhaEMP != null) {
-                        inserirBancoParentes(linhaEMP);
+                    if(leitorParentes != null) {
+                        inserirBancoParentes(leitorParentes);
 
                     }
                     Thread.sleep(2000); 
@@ -68,7 +73,12 @@ public class Arquivo implements Runnable {
         Monitor.start();
     }
 
-    private void inserirNoBanco(String valores) {
+    /**
+     * Insere os valores no banco de dados para a tabela de login.
+     *
+     * @param valores Os valores a serem inseridos no banco de dados.
+     */
+    private void inserirLogin(String valores) {
         try {
 
             String[] valoresSeparados = valores.split(",");
@@ -83,17 +93,23 @@ public class Arquivo implements Runnable {
 
                 pst.executeUpdate();
                 System.out.println("Valores inseridos no banco: " + valores);
-                JOptionPane.showMessageDialog(null, "O usuário " + valoresSeparados[0] +" foi adicionado com sucesso");
+                JOptionPane.showMessageDialog(null, "O login " + valoresSeparados[0] +" foi adicionado com sucesso");
             
 
             }
         
         } catch (SQLException e) {
-            System.out.println("Ocorreu um erro ao tentar inserir os dados na tabela de usaurios:" + e);
+            System.out.println("Ocorreu um erro ao tentar inserir os dados na tabela de login:" + e);
         }
         
         limparArquivo();
     }
+    
+     /**
+     * Insere os valores no banco de dados para a tabela de crianca.
+     *
+     * @param valores Os valores a serem inseridos no banco de dados.
+     */
     
      private void inserirBancoCrianca(String valores) {
         try {
@@ -115,7 +131,7 @@ public class Arquivo implements Runnable {
 
                 System.out.println("Inserção realizada com sucesso");
                 System.out.println("-" + valoresSeparados[0] + "-");
-                JOptionPane.showMessageDialog(null, "O beneficiário " + valoresSeparados[0] +" foi adicionado com sucesso");
+                JOptionPane.showMessageDialog(null, "A criança " + valoresSeparados[0] +" foi adicionado com sucesso");
 
             }
 
@@ -125,6 +141,12 @@ public class Arquivo implements Runnable {
         limparArquivoCrianca();
 
     }
+     
+      /**
+     * Insere os valores no banco de dados para a tabela de parentes.
+     *
+     * @param valores Os valores a serem inseridos no banco de dados.
+     */
      
      private void inserirBancoParentes(String valores) {
         try {
@@ -144,7 +166,7 @@ public class Arquivo implements Runnable {
                 
                 System.out.println("Inserção realizada com sucesso");
                 System.out.println("-" + valoresSeparados[0] + "-");
-                JOptionPane.showMessageDialog(null, "A empresa " + valoresSeparados[0] +" foi adicionada com sucesso");
+                JOptionPane.showMessageDialog(null, "O parente " + valoresSeparados[0] +" foi adicionada com sucesso");
 
           }
 
@@ -154,6 +176,11 @@ public class Arquivo implements Runnable {
         limparArquivoParentes();
 
     };
+     
+        /**
+     * Limpa o conteúdo do arquivo de entrada.
+     */
+     
          private void limparArquivo() {
         try {
             try (FileWriter writer = new FileWriter(ARQUIVO)) {
@@ -164,9 +191,13 @@ public class Arquivo implements Runnable {
             System.out.println("Ocorreu um erro ao limpar o arquivo: " + e);
         }
     }
+         
+   /**
+     * Limpa o conteúdo do arquivo de entrada de crianca.
+     */
          private void limparArquivoCrianca() {
         try {
-            FileWriter writer = new FileWriter(ARQUIVOBENE);
+            FileWriter writer = new FileWriter(ARQUIVOCRIANCA);
             writer.write("");
             writer.close();
             System.out.println("Arquivo limpo");
@@ -174,9 +205,14 @@ public class Arquivo implements Runnable {
             System.out.println("Ocorreu um erro ao limpar o arquivo: " + e);
         }
     }
+         
+   /**
+     * Limpa o conteúdo do arquivo de entrada de parentes.
+     */
+         
          private void limparArquivoParentes() {
         try {
-            FileWriter writer = new FileWriter(ARQUIVOEMP);
+            FileWriter writer = new FileWriter(ARQUIVOPARENTES);
             writer.write("");
             writer.close();
             System.out.println("Arquivo limpo");

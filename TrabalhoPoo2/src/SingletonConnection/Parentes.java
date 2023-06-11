@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -21,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Parentes extends BDObject {
+    
+
 
     SingletonConnection inst = SingletonConnection.getInstance();
     Connection con = inst.getConexao();
@@ -30,6 +32,16 @@ public class Parentes extends BDObject {
     private String parentesco;
     private float mensalidade;
     private int desconto;
+    
+            /**
+     * Construtor da classe Parentes.
+     * @param nome_parentes O nome do parente cadastrado.
+     * @param cpf_parentes O CPF do parente cadastrado.
+     * @param parentesco_parentes O parentesco cadastrado.
+     * @param mensalidade_parentes A mensalidade que vai ser paga pelo parente.
+     * @param desconto_parentes A desconto da mensalidade.
+     */
+
 
     public Parentes(String nome_parentes, String cpf_parentes ,String parentesco_parentes, float mensalidade_parentes, int desconto_parentes) {
         nome = nome_parentes;
@@ -42,11 +54,15 @@ public class Parentes extends BDObject {
     public Parentes() {
     }
 
+  
+     /**
+     * Insere o cadastro de parentes no banco de dados.
+     */
     @Override
     public void inserir() {
 
         try {
-            String query = "INSERT INTO crianca VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO parentes VALUES (?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(query);
 
             pst.setString(1, nome);
@@ -65,6 +81,10 @@ public class Parentes extends BDObject {
         }
     }
 
+    
+     /**
+     * Atualiza o cadastro do parente no banco de dados.
+     */
     @Override
     public void atualizar() {
         try {
@@ -91,9 +111,16 @@ public class Parentes extends BDObject {
         }
     }
 
+    
+      /**
+     * Deleta o cadastro de um parente.
+     * @param nome  Nome da crinça a ser deletado.
+     */
+       
+    
     public void deletar(String nome) {
         try {
-            String query = "DELETE FROM crianca WHERE nome_parentes = ?";
+            String query = "DELETE FROM parentes WHERE nome_parentes = ?";
             PreparedStatement pst = con.prepareStatement(query);
 
             pst.setString(1, nome);
@@ -110,6 +137,10 @@ public class Parentes extends BDObject {
         }
     }
 
+        /**
+     * Mostra os parentes cadastrados em uma tabela.
+     */
+    
     @Override
     public void mostrar() {
         
@@ -119,8 +150,8 @@ public class Parentes extends BDObject {
         tela.setSize(500, 300);
         tela.setResizable(false);
         
-// Cria a tabela
-         String[] colunas = {"Nome", "CPf","Parentesco","Mensalidade","Desconto"};
+ 
+         String[] colunas = {"Nome", "CPF","Parentesco","Mensalidade","Desconto"};
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
         JTable tabela = new JTable(modelo);
         try {
@@ -145,7 +176,7 @@ public class Parentes extends BDObject {
         }
         tela.add(new JScrollPane(tabela));
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        // Exibe a janela
+        
         tela.setVisible(true);
     }
 

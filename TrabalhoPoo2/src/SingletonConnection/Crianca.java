@@ -18,6 +18,16 @@ import javax.swing.table.DefaultTableModel;
  * @author jrthi
  */
 public class Crianca extends BDObject {
+    
+      /**
+     * Construtor da classe Criança.
+     * @param nome_crianca O nome da criança cadastrada.
+     * @param cpf_crianca O CPF da criança cadastrada.
+     * @param sangue_crianca O tipo sanguíneo da criança cadastrada.
+     * @param altura_crianca A altura da criança cadastrada.
+     * @param serie_crianca A série que a criança está matriculada.
+     */
+
 
     SingletonConnection inst = SingletonConnection.getInstance();
     Connection con = inst.getConexao();
@@ -28,17 +38,30 @@ public class Crianca extends BDObject {
     private float altura;
     private int serie;
 
-    public Crianca(String nomeCrianca, String cpfCrianca ,String sangueCrianca,int serieCrianca, float alturaCrianca) {
-        nome = nomeCrianca;
-        cpf = cpfCrianca;
-        sangue = sangueCrianca;
-        altura = alturaCrianca;
-        serie = serieCrianca;
+   /**
+     * Construtor da classe Criança.
+     * @param nome_crianca O nome da criança cadastrada.
+     * @param cpf_crianca O CPF da criança cadastrada.
+     * @param sangue_crianca O tipo sanguíneo da criança cadastrada.
+     * @param altura_crianca A altura da criança cadastrada.
+     * @param serie_crianca A série que a criança está matriculada.
+     */
+
+    
+    public Crianca(String nome_crianca, String cpf_crianca ,String sangue_crianca,int serie_crianca, float altura_crianca) {
+        nome = nome_crianca;
+        cpf = cpf_crianca;
+        sangue = sangue_crianca;
+        altura = altura_crianca;
+        serie = serie_crianca;
     }
 
     public Crianca() {
     }
 
+    /**
+     * Insere o cadastro da criança no banco de dados.
+     */
     @Override
     public void inserir() {
 
@@ -62,6 +85,9 @@ public class Crianca extends BDObject {
         }
     }
 
+     /**
+     * Atualiza o cadastro de uma criança no banco de dados.
+     */
     @Override
     public void atualizar() {
         try {
@@ -88,6 +114,11 @@ public class Crianca extends BDObject {
         }
     }
 
+    /**
+     * Deleta o cadastro de uma criança.
+     * @param nome  Nome da crinça a ser deletado.
+     */
+         
     public void deletar(String nome) {
         try {
             String query = "DELETE FROM crianca WHERE nome_crianca = ?";
@@ -107,6 +138,9 @@ public class Crianca extends BDObject {
         }
     }
 
+       /**
+     * Mostra as crianças cadastrados em uma tabela.
+     */
     @Override
     public void mostrar() {
         
@@ -116,7 +150,7 @@ public class Crianca extends BDObject {
         tela.setSize(500, 300);
         tela.setResizable(false);
         
-
+// Cria a tabela
         String[] colunas = {"Nome", "CPF","Sangue","Altura","Série"};
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
         JTable tabela = new JTable(modelo);
@@ -142,6 +176,7 @@ public class Crianca extends BDObject {
         }
         tela.add(new JScrollPane(tabela));
         tela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+         // Exibe a janela
         tela.setVisible(true);
     }
 

@@ -116,13 +116,13 @@ public class atualizarParentes extends TelaPadrao {
     private void atualizar(){
         
         String nome = txtNome.getText(),
-        cpf =ftxtCpf.getText();
-        String parentesco = txtgrau.getText();
+               cpf =ftxtCpf.getText(),
+               parentesco = txtgrau.getText();
         int desconto =Integer.parseInt((String) jdesconto.getSelectedItem());
         float mensalidade = Float.parseFloat((String) cmensalidade.getSelectedItem());
         try {
             Parentes parentes = new Parentes(nome, cpf, parentesco, mensalidade, desconto);
-            parentes.inserir();
+            parentes.atualizar();
         } catch (Exception e) {
             System.out.println("Ocorreu um erro ao executar o evento :" + e);
         }
